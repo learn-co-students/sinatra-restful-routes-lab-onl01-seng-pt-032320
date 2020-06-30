@@ -1,1 +1,4 @@
-#Placeholder for a model
+# frozen_string_literal: true
+
+class Recipe < ActiveRecord::Base
+end

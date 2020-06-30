@@ -1,0 +1,16 @@
+<div class="card-body">
+	<h1 class="card-title">
+		Recipes
+	</h1>
+	<% if !@recipes.blank? %>
+		<div class="card">
+			<ul class="list-group list-group-flush">
+				<% for recipe in @recipes %>
+					<li class="list-group-item">
+						<a href="/recipes/<%= recipe.id %>"><%= recipe.name %></a>
+					</li>
+			  	<% end %>
+			</ul>
+		</div>
+	<% end %>
+</div>
