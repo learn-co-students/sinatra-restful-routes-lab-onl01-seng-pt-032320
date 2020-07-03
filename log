@@ -1,0 +1,181 @@
+D, [2020-07-03T13:24:10.768402 #53554] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Run options: include {:focus=>true}
+
+All examples were filtered out; ignoring {:focus=>true}
+
+Recipe App
+  Index page '/recipes'
+    responds with a 200 status code
+    displays a list of recipes
+    contains links to each recipe's show page
+  show page '/recipes/:id'
+recipes/id endpoint
+{"id"=>"1"}
+found recipe
+Bomb.com Mac and Cheese
+    responds with a 200 status code
+recipes/id endpoint
+{"id"=>"1"}
+found recipe
+Bomb.com Mac and Cheese
+    displays the recipe's name
+recipes/id endpoint
+{"id"=>"1"}
+found recipe
+Bomb.com Mac and Cheese
+    displays the recipe's ingredients
+recipes/id endpoint
+{"id"=>"1"}
+found recipe
+Bomb.com Mac and Cheese
+    displays the recipe's cook time (FAILED - 1)
+recipes/id endpoint
+{"id"=>"1"}
+found recipe
+Bomb.com Mac and Cheese
+    contains a form to delete the recipe
+recipes/id endpoint
+{"id"=>"1"}
+found recipe
+Bomb.com Mac and Cheese
+    deletes via a DELETE request
+  edit page '/recipes/:id/edit'
+    responds with a 200 status code
+    contains a form to edit the recipe
+    displays the recipe's ingredients before editing
+    submits via a patch request
+  new page '/recipes/new'
+    responds with a 200 status code
+    contains a form to create the recipe
+    posts the form back to create a new recipe (FAILED - 2)
+  creating a new recipe
+recipes/id endpoint
+{"id"=>"3"}
+found recipe
+pumpkin pie
+    creates a new recipe and saves to the database
+recipes/id endpoint
+{"id"=>"3"}
+found recipe
+pumpkin pie
+    redirects to the recipe show page
+  updating a recipe
+    updates the recipe (FAILED - 3)
+    redirects to the recipe show page (FAILED - 4)
+  deleting a recipe
+recipes/id endpoint
+{"id"=>"3"}
+found recipe
+Chocolate Chip Cookies
+    deletes a recipe (FAILED - 5)
+
+Failures:
+
+  1) Recipe App show page '/recipes/:id' displays the recipe's cook time
+     Failure/Error: expect(page.body).to include(recipe_cook_time)
+
+       expected "<h1>Recipe Name: Bomb.com Mac and Cheese</h1>\n<p>Ingredients: milk, butter, cheese, elbow pasta</p>...method\" value=\"delete\"/>\n    <input type=\"submit\" name=\"delete\" value=\"Delete\"/>\n</form>" to include "20 minutes"
+       Diff:
+       @@ -1,2 +1,8 @@
+       -20 minutes
+       +<h1>Recipe Name: Bomb.com Mac and Cheese</h1>
+       +<p>Ingredients: milk, butter, cheese, elbow pasta</p>
+       +<p>Cook Time: </p>
+       +<form action="/recipes/1" method="POST">
+       +    <input type="hidden" name="_method" value="delete"/>
+       +    <input type="submit" name="delete" value="Delete"/>
+       +</form>
+     # ./spec/sinatra_restful_routes_lab_spec.rb:57:in `block (3 levels) in <top (required)>'
+     # ./spec/spec_helper.rb:25:in `block (3 levels) in <top (required)>'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/database_cleaner-1.7.0/lib/database_cleaner/generic/base.rb:16:in `cleaning'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/database_cleaner-1.7.0/lib/database_cleaner/base.rb:100:in `cleaning'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/database_cleaner-1.7.0/lib/database_cleaner/configuration.rb:86:in `block (2 levels) in cleaning'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/database_cleaner-1.7.0/lib/database_cleaner/configuration.rb:87:in `cleaning'
+     # ./spec/spec_helper.rb:24:in `block (2 levels) in <top (required)>'
+
+  2) Recipe App new page '/recipes/new' posts the form back to create a new recipe
+     Failure/Error: fill_in :cook_time, :with => "20 minutes"
+
+     Capybara::ElementNotFound:
+       Unable to find field :cook_time that is not disabled
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/capybara-3.29.0/lib/capybara/node/finders.rb:296:in `block in synced_resolve'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/capybara-3.29.0/lib/capybara/node/base.rb:83:in `synchronize'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/capybara-3.29.0/lib/capybara/node/finders.rb:287:in `synced_resolve'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/capybara-3.29.0/lib/capybara/node/finders.rb:52:in `find'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/capybara-3.29.0/lib/capybara/node/actions.rb:91:in `fill_in'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/capybara-3.29.0/lib/capybara/session.rb:749:in `block (2 levels) in <class:Session>'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/capybara-3.29.0/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'
+     # ./spec/sinatra_restful_routes_lab_spec.rb:109:in `block (3 levels) in <top (required)>'
+     # ./spec/spec_helper.rb:25:in `block (3 levels) in <top (required)>'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/database_cleaner-1.7.0/lib/database_cleaner/generic/base.rb:16:in `cleaning'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/database_cleaner-1.7.0/lib/database_cleaner/base.rb:100:in `cleaning'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/database_cleaner-1.7.0/lib/database_cleaner/configuration.rb:86:in `block (2 levels) in cleaning'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/database_cleaner-1.7.0/lib/database_cleaner/configuration.rb:87:in `cleaning'
+     # ./spec/spec_helper.rb:24:in `block (2 levels) in <top (required)>'
+
+  3) Recipe App updating a recipe updates the recipe
+     Failure/Error: fill_in :cook_time, :with => "30 minutes"
+
+     Capybara::ElementNotFound:
+       Unable to find field :cook_time that is not disabled
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/capybara-3.29.0/lib/capybara/node/finders.rb:296:in `block in synced_resolve'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/capybara-3.29.0/lib/capybara/node/base.rb:83:in `synchronize'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/capybara-3.29.0/lib/capybara/node/finders.rb:287:in `synced_resolve'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/capybara-3.29.0/lib/capybara/node/finders.rb:52:in `find'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/capybara-3.29.0/lib/capybara/node/actions.rb:91:in `fill_in'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/capybara-3.29.0/lib/capybara/session.rb:749:in `block (2 levels) in <class:Session>'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/capybara-3.29.0/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'
+     # ./spec/sinatra_restful_routes_lab_spec.rb:153:in `block (3 levels) in <top (required)>'
+     # ./spec/spec_helper.rb:25:in `block (3 levels) in <top (required)>'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/database_cleaner-1.7.0/lib/database_cleaner/generic/base.rb:16:in `cleaning'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/database_cleaner-1.7.0/lib/database_cleaner/base.rb:100:in `cleaning'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/database_cleaner-1.7.0/lib/database_cleaner/configuration.rb:86:in `block (2 levels) in cleaning'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/database_cleaner-1.7.0/lib/database_cleaner/configuration.rb:87:in `cleaning'
+     # ./spec/spec_helper.rb:24:in `block (2 levels) in <top (required)>'
+
+  4) Recipe App updating a recipe redirects to the recipe show page
+     Failure/Error: fill_in :cook_time, :with => "30 minutes"
+
+     Capybara::ElementNotFound:
+       Unable to find field :cook_time that is not disabled
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/capybara-3.29.0/lib/capybara/node/finders.rb:296:in `block in synced_resolve'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/capybara-3.29.0/lib/capybara/node/base.rb:83:in `synchronize'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/capybara-3.29.0/lib/capybara/node/finders.rb:287:in `synced_resolve'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/capybara-3.29.0/lib/capybara/node/finders.rb:52:in `find'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/capybara-3.29.0/lib/capybara/node/actions.rb:91:in `fill_in'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/capybara-3.29.0/lib/capybara/session.rb:749:in `block (2 levels) in <class:Session>'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/capybara-3.29.0/lib/capybara/dsl.rb:51:in `block (2 levels) in <module:DSL>'
+     # ./spec/sinatra_restful_routes_lab_spec.rb:153:in `block (3 levels) in <top (required)>'
+     # ./spec/spec_helper.rb:25:in `block (3 levels) in <top (required)>'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/database_cleaner-1.7.0/lib/database_cleaner/generic/base.rb:16:in `cleaning'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/database_cleaner-1.7.0/lib/database_cleaner/base.rb:100:in `cleaning'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/database_cleaner-1.7.0/lib/database_cleaner/configuration.rb:86:in `block (2 levels) in cleaning'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/database_cleaner-1.7.0/lib/database_cleaner/configuration.rb:87:in `cleaning'
+     # ./spec/spec_helper.rb:24:in `block (2 levels) in <top (required)>'
+
+  5) Recipe App deleting a recipe deletes a recipe
+     Failure/Error: expect(Recipe.find_by_id(@cookie.id)).to eq(nil)
+
+       expected: nil
+            got: #<Recipe id: 3, name: "Chocolate Chip Cookies", ingredients: "chocolate chips, flour, sugar, butter", cook_time: nil>
+
+       (compared using ==)
+     # ./spec/sinatra_restful_routes_lab_spec.rb:184:in `block (3 levels) in <top (required)>'
+     # ./spec/spec_helper.rb:25:in `block (3 levels) in <top (required)>'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/database_cleaner-1.7.0/lib/database_cleaner/generic/base.rb:16:in `cleaning'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/database_cleaner-1.7.0/lib/database_cleaner/base.rb:100:in `cleaning'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/database_cleaner-1.7.0/lib/database_cleaner/configuration.rb:86:in `block (2 levels) in cleaning'
+     # /home/hannah/.rvm/gems/ruby-2.6.1/gems/database_cleaner-1.7.0/lib/database_cleaner/configuration.rb:87:in `cleaning'
+     # ./spec/spec_helper.rb:24:in `block (2 levels) in <top (required)>'
+
+Finished in 0.20237 seconds (files took 0.75627 seconds to load)
+21 examples, 5 failures
+
+Failed examples:
+
+rspec ./spec/sinatra_restful_routes_lab_spec.rb:56 # Recipe App show page '/recipes/:id' displays the recipe's cook time
+rspec ./spec/sinatra_restful_routes_lab_spec.rb:105 # Recipe App new page '/recipes/new' posts the form back to create a new recipe
+rspec ./spec/sinatra_restful_routes_lab_spec.rb:158 # Recipe App updating a recipe updates the recipe
+rspec ./spec/sinatra_restful_routes_lab_spec.rb:164 # Recipe App updating a recipe redirects to the recipe show page
+rspec ./spec/sinatra_restful_routes_lab_spec.rb:183 # Recipe App deleting a recipe deletes a recipe
+
