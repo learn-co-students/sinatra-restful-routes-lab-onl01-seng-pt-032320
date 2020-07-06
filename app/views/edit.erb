@@ -1,0 +1,14 @@
+#edit.erb
+<body>
+    <form method='post' action="/recipes/<%=@recipe.id%>">
+        <input type="hidden" id="hidden" name="_method" value="patch">
+        <br>
+        <label name='name'>Name</label><br>
+        <input name="name" value="<%=@recipe.name%>"><br>
+        <label name='ingredients'>Ingredients</label><br>
+        <input name='ingredients' value="<%=@recipe.ingredients%>"><br>
+        <label name='cook_time'>Cook Time</label><br>
+        <input name='cook_time' value="<%=@recipe.cook_time%>"><br>
+        <button type="submit" value="submit">Submit</button> 
+    </form>
+</body>

@@ -3,11 +3,8 @@
     <li>Ingredients: <%= @recipe.ingredients%></li>
     <li>Cook Time: <%= @recipe.cook_time%></li>
 </ul>
-<form>
-    <input style="background-color:green;" type="button" value="Edit Recipe"
-    onclick="href='/recipes/#{@recipe.id}/edit'">
-</form>
-<form>
-    <input style="background-color:red;" type="button" value="Delete Recipe"
-    onclick="href='/recipes/#{@recipe.id}/edit'">
+
+<form method="post" action="/recipes/<%= @recipe.id %>">
+    <input type="hidden" id="hidden" name="_method" value="delete">
+    <input style="background-color:red;" type="submit" value="delete">
 </form>
