@@ -1,0 +1,9 @@
+<h1>Index Page</h1>
+
+Welcome to Recipe Lab. Please select <a href="/new">New Recipe</a> to enter a new recipe <br> 
+or <a href="/show">Show</a> to look up and display a recipe.
+
+<h1>Recipes!</h1>
+<% @recipes.each do |r| %>
+    <a href="recipes/<%= r.id %>"><%= r.name %></a><br>  
+<% end %>
