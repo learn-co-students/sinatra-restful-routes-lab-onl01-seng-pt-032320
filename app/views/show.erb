@@ -1,4 +1,4 @@
-<h2>Name: <%=recipe.name%></h2>
-<h2>Ingredients: <%=recipe.ingredients%></h2>
-<h2>Cooking Time: <%=recipe.cook_time%></h2><br><br>
-<a href="/recipes">Back To Recipe List</a>
+<h2>Name: <%=@recipe.name%></h2>
+<h2>Ingredients: <%=@recipe.ingredients%></h2>
+<h2>Cooking Time: <%=@recipe.cook_time%></h2><br><br>
+<p><a href="/recipes"><button>Back To Recipe List</button></a>    <a href="/recipes/<%#{@recipe.id}%>/edit"><button>Edit</button></a></p>
