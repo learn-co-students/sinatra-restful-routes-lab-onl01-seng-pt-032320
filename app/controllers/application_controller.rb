@@ -10,8 +10,8 @@ class ApplicationController < Sinatra::Base
   end
   
   get '/recipes' do 
-    @recipes = Recipe.all
-    if @recipes
+    if Recipe.all!=[]
+      @recipes = Recipe.all
        erb :index
     else 
       redirect '/recipes/new'
@@ -19,8 +19,11 @@ class ApplicationController < Sinatra::Base
   end
   
   post '/recipes' do
-    @recipe = Recipe.create(name: params[:name], ingredients: params[:ingredients], cook_time: params[:cook_time])
-    if @recipe 
+    @recipe = Recipe.new
+    @recipe.name = params[:name]
+    @recipe.ingredients= params[:ingredients]
+    @recipe.cook_time= params[:cook_time]
+    if @recipe.save
         redirect "/recipes/#{@recipe.id}"
     else 
       erb :ierror
@@ -53,10 +56,10 @@ class ApplicationController < Sinatra::Base
     recipe.name = nname
     recipe.ingredients = ningredients
     recipe.cook_time = ncooktime
-    uprecipe = recipe.save
-    if uprecipe
-      redirect "/recipes/#{uprecipe.id}"
+    if recipe.save
+      redirect "/recipes/#{recipe.id}"
     else 
+      @recipe = recipe
       erb :uerror
     end
   end
@@ -67,6 +70,7 @@ class ApplicationController < Sinatra::Base
       recipe.delete
       redirect '/recipes'
     else
+      @recipe = recipe
       erb :derror
     end
   end
