@@ -31,8 +31,8 @@ class ApplicationController < Sinatra::Base
     end
   end
     
-  
-  post '/recipes/:id' do 
+  get '/recipes/:id' do
+      @recipe = Recipe.find_by_id(params[:id])
     
     
   erb :show
