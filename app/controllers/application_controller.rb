@@ -57,8 +57,13 @@ class ApplicationController < Sinatra::Base
     recipe.name = nname
     recipe.ingredients = ningredients
     recipe.cook_time = ncooktime
-    newrecipe = recipe.save
+    uprecipe = recipe.save
     if newrecipe
+      redirect "/recipes/#{uprecipe.id}"
+    else 
+      erb :uerror
+    end
+  end
       
   
   
