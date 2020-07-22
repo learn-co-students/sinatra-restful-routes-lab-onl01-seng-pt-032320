@@ -1,0 +1,12 @@
+<h1>Here are the current recipes</h1>
+<%@recipes.each do |recipe| %>
+  <h2>Name: <%=recipe.name%></h2>
+  <h2>Ingredients: <%=recipe.ingredients%></h2>
+  <h2>Cooking Time: <%=recipe.cook_time%></h2>
+  <form action="/recipes/<%=#{recipe.id}%>" method="post">
+    <input type="submit" value="Recipe Show Page" 
+         name="Submit" id="submit" />
+  </form>
+  <br><br>
+<%end%>
+<br>
